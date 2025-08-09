@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DailyRiddleWars</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Top bar -->
+    <header class="topbar">
+      <div class="brand">
+        <img src="assets/logo.png" alt="logo" class="logo">
+        <div>
+          <h1>DailyRiddleWars</h1>
+          <small class="tag">From Dream to Launch — One Bold Plan at a Time</small>
+        </div>
+      </div>
+      <div class="status">
+        <div class="coins">💰 <span id="coins">0</span></div>
+        <div class="streak">🔥 <span id="streak">0</span>d</div>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="container">
+      <!-- Sign up / Profile modal -->
+      <section id="signup-screen" class="card">
+        <h2>Welcome!</h2>
+        <p>Sign up to save rewards & receive airtime/cash payouts.</p>
+        <input id="name" placeholder="Full name" />
+        <input id="phone" placeholder="Phone number (for airtime)" />
+        <input id="bank" placeholder="Bank name" />
+        <input id="account" placeholder="Account number" />
+        <div class="row">
+          <button id="signup-btn" class="btn primary">Save & Continue</button>
+          <button id="skip-btn" class="btn ghost">Skip (later)</button>
+        </div>
+      </section>
+
+      <!-- Game screen -->
+      <section id="game-screen" class="hidden">
+        <div class="card riddle-card">
+          <div class="riddle-meta">
+            <div>Pack: <span id="pack-label">Free</span></div>
+            <div class="riddle-index">Riddle <span id="riddle-index">—</span></div>
+          </div>
+
+          <h2 id="riddle-question">Tap "Start" to get your riddle</h2>
+
+          <div class="answer-row">
+            <input id="answer-input" placeholder="Type your answer..." autocomplete="off" />
+            <button id="submit-answer" class="btn primary">Submit</button>
+          </div>
+
+          <div class="controls">
+            <button id="hint-btn" class="btn hint">Hint (-10 coins)</button>
+            <button id="next-btn" class="btn ghost">Skip</button>
+          </div>
+
+          <div class="progress">
+            <div id="progress-bar" class="bar"><div id="progress-fill"></div></div>
+            <div class="progress-text"><span id="progress-text">0 / 50</span></div>
+          </div>
+        </div>
+
+        <div class="actions row">
+          <select id="pack-select">
+            <option value="free">Free</option>
+            <option value="premium">Premium (₦500)</option>
+            <option value="vip">VIP (₦2000)</option>
+          </select>
+
+          <button id="start-btn" class="btn primary">Start</button>
+          <button id="unlock-all-btn" class="btn accent">Unlock All</button>
+        </div>
+
+        <div class="row small">
+          <button id="leaderboard-btn" class="btn ghost">Leaderboard</button>
+          <button id="profile-btn" class="btn ghost">Profile</button>
+          <button id="buy-coins-btn" class="btn ghost">Buy Coins</button>
+        </div>
+      </section>
+
+      <!-- Leaderboard modal -->
+      <section id="leaderboard-screen" class="card hidden">
+        <div class="leaderboard-header">
+          <h3>Leaderboard</h3>
+          <small>Saturday challenge highlighted</small>
+        </div>
+        <ul id="leaderboard-list" class="leaderboard-list"></ul>
+        <div class="row">
+          <button id="close-leaderboard" class="btn ghost">Close</button>
+        </div>
+      </section>
+
+      <!-- Profile modal -->
+      <section id="profile-screen" class="card hidden">
+        <h3>Your Profile</h3>
+        <div><strong>Name:</strong> <span id="p-name">—</span></div>
+        <div><strong>Phone:</strong> <span id="p-phone">—</span></div>
+        <div><strong>Bank:</strong> <span id="p-bank">—</span></div>
+        <div><strong>Account:</strong> <span id="p-account">—</span></div>
+        <div><strong>Coins:</strong> <span id="p-coins">0</span></div>
+        <div class="row">
+          <button id="close-profile" class="btn ghost">Close</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="small">Made for Telegram WebApp • Manual payouts: Cash & Airtime</div>
+      <div class="small">Hints deduct score (10 → 7) • 7 riddles/day unless unlocked</div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
