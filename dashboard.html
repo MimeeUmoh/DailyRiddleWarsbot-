@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Admin Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-4">
+  <h2>Admin Dashboard</h2>
+  <a href="{{ url_for('admin_logout') }}" class="btn btn-danger mb-3">Logout</a>
+  <a href="{{ url_for('add_riddle') }}" class="btn btn-success mb-3">Add New Riddle</a>
+
+  <h3>Users ({{ users|length }})</h3>
+  <table class="table table-striped">
+    <thead><tr><th>ID</th><th>Username</th><th>Coins</th><th>Category</th></tr></thead>
+    <tbody>
+    {% for uid, u in users.items() %}
+      <tr>
+        <td>{{ uid }}</td>
+        <td>{{ u.username or 'N/A' }}</td>
+        <td>{{ u.coins or 0 }}</td>
+        <td>{{ u.category or 'free' }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <h3>Riddles</h3>
+  {% for cat, rlist in riddles.items() %}
+    <h5>{{ cat.capitalize() }} ({{ rlist|length }})</h5>
+    <table class="table table-bordered">
+      <thead><tr><th>ID</th><th>Question</th><th>Answer</th><th>Action</th></tr></thead>
+      <tbody>
+      {% for r in rlist %}
+        <tr>
+          <td>{{ r.id }}</td>
+          <td>{{ r.question }}</td>
+          <td>{{ r.answer }}</td>
+          <td>
+            <form action="{{ url_for('delete_riddle', category=cat, riddle_id=r.id) }}" method="POST" onsubmit="return confirm('Delete this riddle?');">
+              <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  {% endfor %}
+</body>
+</html>
